@@ -1,0 +1,15 @@
+## Title: Controller Tweaks
+## Description:  Tweaks to ESO's Controller UI - /controllertweaks for options
+## Version: 0.1
+## AddOnVersion: 1
+## Author: Xeio
+## APIVersion: 100028
+## SavedVariables: ControllerTweaksSavedVariables
+## DependsOn: LibAddonMenu-2.0
+
+Source\Globals.lua
+Source\Settings.lua
+Source\OptionsPanel.lua
+Source\JunkHandler.lua
+
+ControllerTweaks.lua

@@ -1,0 +1,14 @@
+{
+    "Lua.workspace.library": {
+        "../../../../GitHub/esoui/esoui": true
+    },
+    "Lua.workspace.maxPreload": 1500,
+    "Lua.workspace.preloadFileSize": 10000,
+    "Lua.diagnostics.globals": [
+        "EVENT_ADD_ON_LOADED",
+        "SetItemIsJunk",
+        "IsItemJunk",
+        "GetString",
+        "CanItemBeMarkedAsJunk"
+    ]
+}
