@@ -85,7 +85,7 @@ local function UpdateInventoryHotkeys(descriptor)
 end
 
 local function AddItemActions()
-    if not GAMEPAD_INVENTORY.itemActions.inventorySlot then
+    if not GAMEPAD_INVENTORY.itemActions or not GAMEPAD_INVENTORY.itemActions.inventorySlot then
         return false
     end
 
