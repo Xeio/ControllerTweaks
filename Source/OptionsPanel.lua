@@ -26,8 +26,29 @@ local options = {
         getFunc = function() return CT.Settings.JunkHotkey end,
         setFunc = function(var) CT.Settings.JunkHotkey = var end,
         width = "full",
+        default = "UI_SHORTCUT_RIGHT_STICK"
+    },
+    {
+        type = "dropdown",
+        name = "Stack All Hotkey",
+        tooltip = "Hotkey for stack all.",
+        choices = {NONE, LEFT_STICK, RIGHT_STICK, QUATERNARY},
+        choicesValues = {"NONE", "UI_SHORTCUT_LEFT_STICK", "UI_SHORTCUT_RIGHT_STICK", "UI_SHORTCUT_QUATERNARY"},
+        getFunc = function() return CT.Settings.StackAllHotkey end,
+        setFunc = function(var) CT.Settings.StackAllHotkey = var end,
+        width = "full",
         default = "UI_SHORTCUT_LEFT_STICK"
-        -- warning = "Will need to reload the UI.",	--(optional)
+    },
+    {
+        type = "dropdown",
+        name = "Destroy Item Hotkey",
+        tooltip = "Hotkey for destroy item command.",
+        choices = {NONE, LEFT_STICK, RIGHT_STICK, QUATERNARY},
+        choicesValues = {"NONE", "UI_SHORTCUT_LEFT_STICK", "UI_SHORTCUT_RIGHT_STICK", "UI_SHORTCUT_QUATERNARY"},
+        getFunc = function() return CT.Settings.DestroyHotkey end,
+        setFunc = function(var) CT.Settings.DestroyHotkey = var end,
+        width = "full",
+        default = "UI_SHORTCUT_QUATERNARY"
     }
 }
 
