@@ -70,7 +70,23 @@ local function AddToggleJunkKeybind(descriptor)
     return false
 end
 
+local function AddItemActions()
+    if not GAMEPAD_INVENTORY.itemActions.inventorySlot then
+        return false
+    end
+
+    local bag, index = ZO_Inventory_GetBagAndIndex(GAMEPAD_INVENTORY.itemActions.inventorySlot)
+    if not IsItemJunk(bag, index) and CanItemBeMarkedAsJunk(bag, index) then
+        GAMEPAD_INVENTORY.itemActions.slotActions:AddSlotAction(SI_ITEM_ACTION_MARK_AS_JUNK, function() SetItemIsJunk(bag, index, true) end, nil)
+    end
+    if IsItemJunk(bag, index) then
+        GAMEPAD_INVENTORY.itemActions.slotActions:AddSlotAction(SI_ITEM_ACTION_UNMARK_AS_JUNK, function() SetItemIsJunk(bag, index, false) end, nil)
+    end
+    return false
+end
+
 CT.JunkInit = function()
     ZO_PreHook("ZO_SharedGamepadEntry_OnSetup", ShowJunkIcons)
     ZO_PreHook(ZO_GamepadInventory, "SetActiveKeybinds", AddToggleJunkKeybind)
+    ZO_PreHook(ZO_ItemSlotActionsController, "RefreshKeybindStrip", AddItemActions)
 end
