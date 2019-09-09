@@ -1,6 +1,7 @@
 {
     "Lua.workspace.library": {
-        "../../../../GitHub/esoui/esoui": true
+        "../../../../GitHub/esoui/esoui": true,
+        "../LibAddonMenu-2.0": true
     },
     "Lua.workspace.maxPreload": 1500,
     "Lua.workspace.preloadFileSize": 10000,
