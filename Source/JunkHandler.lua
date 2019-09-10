@@ -23,9 +23,9 @@ local function ToggleItemJunk()
     SetItemIsJunk(bag, index, not IsItemJunk(bag, index))
 end
 
-local junkHotkeyIndex = nil
-local destroyHotkeyIndex = nil
-local stackAllHotkeyIndex = nil
+local _junkHotkeyIndex = nil
+local _destroyHotkeyIndex = nil
+local _stackAllHotkeyIndex = nil
 
 local function UpdateInventoryHotkeys(descriptor)
     local inventoryBinds = GAMEPAD_INVENTORY.itemFilterKeybindStripDescriptor
@@ -34,32 +34,32 @@ local function UpdateInventoryHotkeys(descriptor)
         return false
     end
 
-    if not destroyHotkeyIndex then
+    if not _destroyHotkeyIndex then
         for i, hotkey in ipairs(inventoryBinds) do
             if hotkey.name == GetString(SI_ITEM_ACTION_STACK_ALL) then
-                stackAllHotkeyIndex = i
+                _stackAllHotkeyIndex = i
             end
             if hotkey.name == GetString(SI_ITEM_ACTION_DESTROY) then
-                destroyHotkeyIndex = i
+                _destroyHotkeyIndex = i
             end
         end
     end
 
-    inventoryBinds[destroyHotkeyIndex].keybind = CT.Settings.DestroyHotkey
-    inventoryBinds[stackAllHotkeyIndex].keybind = CT.Settings.StackAllHotkey
+    inventoryBinds[_destroyHotkeyIndex].keybind = CT.Settings.DestroyHotkey
+    inventoryBinds[_stackAllHotkeyIndex].keybind = CT.Settings.StackAllHotkey
 
     if CT.Settings.JunkHotkey == "None" then
-        if junkHotkeyIndex then
-            inventoryBinds.remove(junkHotkeyIndex)
-            junkHotkeyIndex = nil
+        if _junkHotkeyIndex then
+            inventoryBinds.remove(_junkHotkeyIndex)
+            _junkHotkeyIndex = nil
         end
     else
-        if junkHotkeyIndex then
+        if _junkHotkeyIndex then
             --Already created entry, just make sure the hotkey is up to date
-            inventoryBinds[junkHotkeyIndex].keybind = CT.Settings.JunkHotkey
+            inventoryBinds[_junkHotkeyIndex].keybind = CT.Settings.JunkHotkey
         else
-            junkHotkeyIndex = #inventoryBinds + 1
-            inventoryBinds[junkHotkeyIndex] = {
+            _junkHotkeyIndex = #inventoryBinds + 1
+            inventoryBinds[_junkHotkeyIndex] = {
                 name = BIND_NAME,
                 keybind = CT.Settings.JunkHotkey,
                 order = 1501,
