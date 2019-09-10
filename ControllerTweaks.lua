@@ -8,6 +8,7 @@ local function Init(event, name)
     CT.SettingsInit()
     CT.OptionsPanelInit()
     CT.JunkInit()
+    CT.ChatHandlerInit()
 end
 
 EVENT_MANAGER:RegisterForEvent(CT.AddonName, EVENT_ADD_ON_LOADED, Init)

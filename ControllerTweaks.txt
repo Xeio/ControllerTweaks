@@ -11,5 +11,6 @@ Source\Globals.lua
 Source\Settings.lua
 Source\OptionsPanel.lua
 Source\JunkHandler.lua
+Source\ChatHandler.lua
 
 ControllerTweaks.lua
