@@ -1,7 +1,8 @@
 {
     "Lua.workspace.library": {
         "../../../../GitHub/esoui/esoui": true,
-        "../LibAddonMenu-2.0": true
+        "../LibAddonMenu-2.0": true,
+        "../PersonalAssistant": true
     },
     "Lua.workspace.maxPreload": 1500,
     "Lua.workspace.preloadFileSize": 10000,
@@ -26,6 +27,10 @@
         "JumpToGroupMember",
         "CHAT_CATEGORY_PARTY",
         "JumpToFriend",
-        "ITEM_TRAIT_INFORMATION_CAN_BE_RESEARCHED"
+        "ITEM_TRAIT_INFORMATION_CAN_BE_RESEARCHED",
+        "GetItemLinkItemId",
+        "GetItemLink",
+        "SI_PA_SUBMENU_PAJ_MARK_PERM_JUNK",
+        "SI_PA_SUBMENU_PAJ_UNMARK_PERM_JUNK"
     ]
 }

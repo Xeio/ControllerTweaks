@@ -96,12 +96,30 @@ local function AddItemActions()
     end
 
     local bag, index = ZO_Inventory_GetBagAndIndex(GAMEPAD_INVENTORY.itemActions.inventorySlot)
-    if not IsItemJunk(bag, index) and CanItemBeMarkedAsJunk(bag, index) then
+    if not bag or not index then
+        return false
+    end
+
+    local canBeJunk =  CanItemBeMarkedAsJunk(bag, index)
+    if not IsItemJunk(bag, index) and canBeJunk then
         GAMEPAD_INVENTORY.itemActions.slotActions:AddSlotAction(SI_ITEM_ACTION_MARK_AS_JUNK, function() SetItemIsJunk(bag, index, true) end, nil)
     end
     if IsItemJunk(bag, index) then
         GAMEPAD_INVENTORY.itemActions.slotActions:AddSlotAction(SI_ITEM_ACTION_UNMARK_AS_JUNK, function() SetItemIsJunk(bag, index, false) end, nil)
     end
+    
+    if PersonalAssistant and PersonalAssistant.Junk then
+        local itemLink = GetItemLink(bag, index)
+        local itemId = GetItemLinkItemId(itemLink)
+        local hasPARule = PersonalAssistant.HelperFunctions.isKeyInTable(PersonalAssistant.Junk.SavedVars.Custom.ItemIds, itemId)
+        if CanItemBeMarkedAsJunk(bag, index) and not hasPARule then
+            GAMEPAD_INVENTORY.itemActions.slotActions:AddSlotAction(SI_PA_SUBMENU_PAJ_MARK_PERM_JUNK, function() PersonalAssistant.Junk.addItemToPermanentJunk(itemLink, bagId, index) end, nil)
+        end
+        if hasPARule then
+            GAMEPAD_INVENTORY.itemActions.slotActions:AddSlotAction(SI_PA_SUBMENU_PAJ_UNMARK_PERM_JUNK, function() PersonalAssistant.Junk.removeItemFromPermanentJunk(itemLink) end, nil)
+        end
+    end
+    
     return false
 end
 
