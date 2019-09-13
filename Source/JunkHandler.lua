@@ -1,12 +1,18 @@
 local CT = ControllerTweaks
 
 local JUNK_ICON = "EsoUI/Art/Inventory/inventory_tabIcon_junk_up.dds"
+local RESEARCH_ICON = "EsoUI/Art/Inventory/Gamepad/gp_inventory_trait_not_researched_icon.dds"
 local BIND_NAME = GetString(SI_GAMEPAD_TOGGLE_OPTION) .. " " .. GetString(SI_ITEMFILTERTYPE9)
 
 local function ShowJunkIcons(control, data, selected, reselectingDuringRebuild, enabled, active)
     local statusIndicator = control.statusIndicator
     zo_callLater(function()
         if statusIndicator then
+            if data.traitInformation == ITEM_TRAIT_INFORMATION_CAN_BE_RESEARCHED then
+                statusIndicator:ClearIcons()
+                statusIndicator:AddIcon(RESEARCH_ICON)
+                statusIndicator:Show()
+            end
             if data.isJunk then
                 statusIndicator:ClearIcons()
                 statusIndicator:AddIcon(JUNK_ICON)

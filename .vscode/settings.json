@@ -25,6 +25,7 @@
         "IsFriend",
         "JumpToGroupMember",
         "CHAT_CATEGORY_PARTY",
-        "JumpToFriend"
+        "JumpToFriend",
+        "ITEM_TRAIT_INFORMATION_CAN_BE_RESEARCHED"
     ]
 }
