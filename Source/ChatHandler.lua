@@ -1,6 +1,19 @@
 local CT = ControllerTweaks
 
+local function BuildJumpToFriend()
+    return CHAT_MENU_GAMEPAD:BuildOptionEntry(nil, 
+            GetString(SI_SOCIAL_MENU_JUMP_TO_PLAYER), 
+            function() JumpToFriend(CHAT_MENU_GAMEPAD.socialData.displayName) end)
+end
+
+local function IsFriendJumpable()
+    return IsFriend(CHAT_MENU_GAMEPAD.socialData.displayName)
+end
+
+
 local function BuildJumpToGuildMember()
+    if IsFriendJumpable() then return false end
+
     return CHAT_MENU_GAMEPAD:BuildOptionEntry(nil, 
             GetString(SI_SOCIAL_MENU_JUMP_TO_PLAYER), 
             function() JumpToGuildMember(CHAT_MENU_GAMEPAD.socialData.displayName) end)
@@ -24,16 +37,6 @@ local function IsGuildJumpable()
     return false
 end
 
-local function BuildJumpToFriend()
-    return CHAT_MENU_GAMEPAD:BuildOptionEntry(nil, 
-            GetString(SI_SOCIAL_MENU_JUMP_TO_PLAYER), 
-            function() JumpToFriend(CHAT_MENU_GAMEPAD.socialData.displayName) end)
-end
-
-local function IsFriendJumpable()
-    return IsFriend(CHAT_MENU_GAMEPAD.socialData.displayName)
-end
-
 local function BuildJumpToGroupMember()
     return CHAT_MENU_GAMEPAD:BuildOptionEntry(nil, 
             GetString(SI_SOCIAL_MENU_JUMP_TO_PLAYER), 
@@ -41,6 +44,8 @@ local function BuildJumpToGroupMember()
 end
 
 local function IsGroupJumpable()
+    if IsFriendJumpable() then return false end
+    
     return CHAT_MENU_GAMEPAD.socialData.category == CHAT_CATEGORY_PARTY
 end
 
