@@ -31,6 +31,7 @@
         "GetItemLinkItemId",
         "GetItemLink",
         "SI_PA_SUBMENU_PAJ_MARK_PERM_JUNK",
-        "SI_PA_SUBMENU_PAJ_UNMARK_PERM_JUNK"
+        "SI_PA_SUBMENU_PAJ_UNMARK_PERM_JUNK",
+        "DecorateDisplayName"
     ]
 }
