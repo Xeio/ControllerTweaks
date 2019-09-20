@@ -120,6 +120,11 @@ local function AddItemActions()
             GAMEPAD_INVENTORY.itemActions.slotActions:AddSlotAction(SI_PA_SUBMENU_PAJ_UNMARK_PERM_JUNK, function() PersonalAssistant.Junk.removeItemFromPermanentJunk(itemLink) end, nil)
         end
     end
+
+    if TamrielTradeCentre then
+        local itemLink = GetItemLink(bag, index)
+        GAMEPAD_INVENTORY.itemActions.slotActions:AddSlotAction(TTC_PRICE_PRICETOCHAT, function() TamrielTradeCentrePrice:PriceInfoToChat(itemLink, TamrielTradeCentreLangEnum.Default) end, nil)
+    end
     
     return false
 end

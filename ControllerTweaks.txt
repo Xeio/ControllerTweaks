@@ -6,7 +6,7 @@
 ## APIVersion: 100028
 ## SavedVariables: ControllerTweaksSavedVariables
 ## DependsOn: LibAddonMenu-2.0
-## OptionalDependsOn: PersonalAssistant
+## OptionalDependsOn: PersonalAssistant TamrielTradeCentre
 
 Source\Globals.lua
 Source\Settings.lua
