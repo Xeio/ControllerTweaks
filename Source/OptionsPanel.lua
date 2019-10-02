@@ -49,6 +49,15 @@ local options = {
         setFunc = function(var) CT.Settings.DestroyHotkey = var end,
         width = "full",
         default = "UI_SHORTCUT_QUATERNARY"
+    },
+    {
+        type = "checkbox",
+        name = "Show TTC Price",
+        tooltip = "Shows TTC Price on item popup.",
+        getFunc = function() return CT.Settings.ShowTTCPrice end,
+        setFunc = function(var) CT.Settings.ShowTTCPrice = var end,
+        width = "full",
+        default = true
     }
 }
 
