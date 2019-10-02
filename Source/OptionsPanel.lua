@@ -58,7 +58,22 @@ local options = {
         setFunc = function(var) CT.Settings.ShowTTCPrice = var end,
         width = "full",
         default = true
-    }
+    },
+    {
+        type = "slider",
+        name = "Loot Panel Offset",
+        tooltip = "Vertical offset of the recent loot panel.",
+        min = -400,
+        max = 400,
+        step = 5,
+        getFunc = function() return CT.Settings.LootPanelOffset end,
+        setFunc = function(var) 
+            CT.Settings.LootPanelOffset = var 
+            CT.Loot:UpdatePanel()
+        end,
+        width = "full",
+        default = 0
+    },
 }
 
 CT.OptionsPanelInit = function()
