@@ -5,10 +5,11 @@ local function Init(event, name)
     
     EVENT_MANAGER:UnregisterForEvent(CT.AddonName, EVENT_ADD_ON_LOADED)
 
-    CT.SettingsInit()
-    CT.OptionsPanelInit()
-    CT.JunkInit()
-    CT.ChatHandlerInit()
+    CT.Settings:Init()
+    CT.OptionsPanel:Init()
+    CT.Inventory:Init()
+    CT.Chat:Init()
+    CT.Tooltips:Init()
     CT.Loot:UpdatePanel()
 end
 

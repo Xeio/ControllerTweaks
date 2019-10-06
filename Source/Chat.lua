@@ -1,5 +1,7 @@
 local CT = ControllerTweaks
 
+local Chat = {}
+
 local function BuildJumpToFriend()
     return CHAT_MENU_GAMEPAD:BuildOptionEntry(nil, 
             GetString(SI_SOCIAL_MENU_JUMP_TO_PLAYER), 
@@ -9,7 +11,6 @@ end
 local function IsFriendJumpable()
     return IsFriend(CHAT_MENU_GAMEPAD.socialData.displayName)
 end
-
 
 local function BuildJumpToGuildMember()
     if IsFriendJumpable() then return false end
@@ -63,6 +64,8 @@ local function GamepadChatInit()
     return false
 end
 
-CT.ChatHandlerInit = function()
+function Chat:Init()
     ZO_PreHook(CHAT_MENU_GAMEPAD, "OnShow", GamepadChatInit)
 end
+
+CT.Chat = Chat

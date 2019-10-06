@@ -1,5 +1,7 @@
 local CT = ControllerTweaks
 
+local OptionsPanel = {}
+
 local panelData = {
     type = "panel",
     name = "Controller Tweaks",
@@ -76,7 +78,9 @@ local options = {
     },
 }
 
-CT.OptionsPanelInit = function()
+function OptionsPanel:Init()
     LibAddonMenu2:RegisterAddonPanel("ControllerTweaks", panelData)
     LibAddonMenu2:RegisterOptionControls("ControllerTweaks", options)
 end
+
+CT.OptionsPanel = OptionsPanel

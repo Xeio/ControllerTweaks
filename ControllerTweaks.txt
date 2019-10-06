@@ -9,10 +9,13 @@
 ## OptionalDependsOn: PersonalAssistant TamrielTradeCentre
 
 Source\Globals.lua
+
 Source\Settings.lua
+
 Source\OptionsPanel.lua
-Source\JunkHandler.lua
-Source\ChatHandler.lua
+Source\Inventory.lua
+Source\Chat.lua
+Source\Tooltips.lua
 Source\Loot.lua
 
 ControllerTweaks.lua
