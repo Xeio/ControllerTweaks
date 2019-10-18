@@ -10,6 +10,7 @@ local function Init(event, name)
     CT.Inventory:Init()
     CT.Chat:Init()
     CT.Tooltips:Init()
+    CT.Mail:Init()
     CT.Loot:UpdatePanel()
 end
 

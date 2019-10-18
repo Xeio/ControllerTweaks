@@ -17,5 +17,6 @@ Source\Inventory.lua
 Source\Chat.lua
 Source\Tooltips.lua
 Source\Loot.lua
+Source\Mail.lua
 
 ControllerTweaks.lua
