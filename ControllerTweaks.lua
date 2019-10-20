@@ -11,6 +11,7 @@ local function Init(event, name)
     CT.Chat:Init()
     CT.Tooltips:Init()
     CT.Mail:Init()
+    CT.GroupFinder:Init()
     CT.Loot:UpdatePanel()
 end
 

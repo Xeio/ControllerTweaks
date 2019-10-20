@@ -18,5 +18,6 @@ Source\Chat.lua
 Source\Tooltips.lua
 Source\Loot.lua
 Source\Mail.lua
+Source\GroupFinder.lua
 
 ControllerTweaks.lua
