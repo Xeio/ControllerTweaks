@@ -10,6 +10,9 @@ Inventory:
 * If PersonalAssistant addon is installed, adds "Mark as Permanent Junk" option to Actions menu
 * If TamrielTradeCentre is installed, shows abbreviated TTC price information in item popups
 
+Dungeon Finder:
+* Shows entries for active Pledge quests at the top of the Specific Dungeon list
+
 Mail:
 * Hotkey to delete all mail with no attachments
 
@@ -17,7 +20,7 @@ Loot Panel:
 * Adds verticle offset to the loot popup panel (configurable in options). No more loot displayed behind the chat window.
 
 Gamepad Chat:
-* Allows quick traveling to guild members, group members, or friends
+* Allows quick traveling to guild members, group members, or friends (that have recently chatted) through the controller chat interface
 
 
 
