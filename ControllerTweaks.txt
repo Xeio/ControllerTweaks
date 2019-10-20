@@ -3,7 +3,7 @@
 ## Version: 0.1
 ## AddOnVersion: 1
 ## Author: Xeio
-## APIVersion: 100028
+## APIVersion: 100028 100029
 ## SavedVariables: ControllerTweaksSavedVariables
 ## DependsOn: LibAddonMenu-2.0
 ## OptionalDependsOn: PersonalAssistant TamrielTradeCentre
