@@ -8,22 +8,19 @@ local BIND_NAME = GetString(SI_GAMEPAD_TOGGLE_OPTION) .. " " .. GetString(SI_ITE
 
 local function ShowJunkIcons(control, data, selected, reselectingDuringRebuild, enabled, active)
     local statusIndicator = control.statusIndicator
-    zo_callLater(function()
-        if statusIndicator then
-            if data.isEquippedInCurrentCategory or data.isEquippedInAnotherCategory then
-                --Don't override the equipped indicator
-            elseif data.isJunk then
-                statusIndicator:ClearIcons()
-                statusIndicator:AddIcon(JUNK_ICON)
-                statusIndicator:Show()
-            elseif data.traitInformation == ITEM_TRAIT_INFORMATION_CAN_BE_RESEARCHED then
-                statusIndicator:ClearIcons()
-                statusIndicator:AddIcon(RESEARCH_ICON)
-                statusIndicator:Show()
-            end
+    if statusIndicator then
+        if data.isEquippedInCurrentCategory or data.isEquippedInAnotherCategory then
+            --Don't override the equipped indicator
+        elseif data.isJunk then
+            statusIndicator:ClearIcons()
+            statusIndicator:AddIcon(JUNK_ICON)
+            statusIndicator:Show()
+        elseif data.traitInformation == ITEM_TRAIT_INFORMATION_CAN_BE_RESEARCHED then
+            statusIndicator:ClearIcons()
+            statusIndicator:AddIcon(RESEARCH_ICON)
+            statusIndicator:Show()
         end
-     end, 1)
-    return false
+    end
 end
 
 local function ToggleItemJunk()
@@ -132,7 +129,7 @@ local function AddItemActions()
 end
 
 function Inventory:Init()
-    ZO_PreHook("ZO_SharedGamepadEntry_OnSetup", ShowJunkIcons)
+    ZO_PostHook("ZO_SharedGamepadEntry_OnSetup", ShowJunkIcons)
     ZO_PreHook(ZO_GamepadInventory, "SetActiveKeybinds", UpdateInventoryHotkeys)
     ZO_PreHook(ZO_ItemSlotActionsController, "RefreshKeybindStrip", AddItemActions)
 end
