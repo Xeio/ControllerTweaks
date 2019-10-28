@@ -7,6 +7,7 @@ local function FindPledgeQuestForDungeon(dungeonLocation)
         if IsValidQuestIndex(i) then
             local questName = GetJournalQuestName(i)
             local dungeonRegex = string.gsub(dungeonLocation.rawName, "-", ".")
+            dungeonRegex = string.gsub(dungeonRegex, "The ", "T?h?e? ?")
             dungeonRegex = string.gsub(dungeonRegex, "Caverns ", "C?a?v?e?r?n?s? ?")
             if string.match(questName, dungeonRegex) then
                 if not string.match(dungeonLocation.rawName, " I$") or not string.match(questName, "II") then
