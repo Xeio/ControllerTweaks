@@ -19,5 +19,6 @@ Source\Tooltips.lua
 Source\Loot.lua
 Source\Mail.lua
 Source\GroupFinder.lua
+Source\Provisioning.lua
 
 ControllerTweaks.lua

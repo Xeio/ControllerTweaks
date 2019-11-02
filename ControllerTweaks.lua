@@ -12,6 +12,7 @@ local function Init(event, name)
     CT.Tooltips:Init()
     CT.Mail:Init()
     CT.GroupFinder:Init()
+    CT.Provisioning:Init()
     CT.Loot:UpdatePanel()
 end
 
