@@ -13,7 +13,7 @@ local function DeleteEmptyMail()
 
         if mailData.isReadInfoReady and attachmentsCount == 0 and attachedMoney == 0 and codAmount == 0 then
             DeleteMail(mailId, false)
-            zo_callLater(DeleteEmptyMail, 200)
+            zo_callLater(DeleteEmptyMail, 150)
             return
         end
     end
