@@ -1,9 +1,20 @@
 local CT = ControllerTweaks
 
-local Tooltips = {}
+local Tooltips = CT_Plugin:Subclass()
+
+local showTTTCPriceOption = {
+    settingKey = "ShowTTCPrice",
+    type = "checkbox",
+    name = "Show TTC Price",
+    tooltip = "Shows TTC Price on item popup.",
+    width = "full",
+    default = true
+}
+
+Tooltips.options = { showTTTCPriceOption }
 
 local function AddPriceLine(tooltip, itemLink, name)
-    if not CT.Settings.ShowTTCPrice then
+    if not CT.Settings[showTTTCPriceOption.settingKey] then
         return
     end
 
@@ -29,7 +40,7 @@ local function AddPriceLine(tooltip, itemLink, name)
 end
 
 local function AddBottomTooltip(tooltip, itemLink, name)
-    if not CT.Settings.ShowTTCPrice then
+    if not CT.Settings[showTTTCPriceOption.settingKey] then
         return
     end
     local priceInfo = TamrielTradeCentrePrice:GetPriceInfo(itemLink)

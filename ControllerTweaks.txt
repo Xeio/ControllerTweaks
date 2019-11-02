@@ -11,8 +11,9 @@
 Source\Globals.lua
 
 Source\Settings.lua
-
 Source\OptionsPanel.lua
+Source\Plugin.lua
+
 Source\Inventory.lua
 Source\Chat.lua
 Source\Tooltips.lua

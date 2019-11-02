@@ -1,6 +1,6 @@
 local CT = ControllerTweaks
 
-local Chat = {}
+local Chat = CT_Plugin:Subclass()
 
 local function BuildJumpToFriend()
     return CHAT_MENU_GAMEPAD:BuildOptionEntry(nil, 
@@ -46,7 +46,7 @@ end
 
 local function IsGroupJumpable()
     if IsFriendJumpable() then return false end
-    
+
     return CHAT_MENU_GAMEPAD.socialData.category == CHAT_CATEGORY_PARTY
 end
 
@@ -60,7 +60,7 @@ local function GamepadChatInit()
     CHAT_MENU_GAMEPAD:AddOptionTemplate(1, BuildJumpToFriend, IsFriendJumpable)
     CHAT_MENU_GAMEPAD:AddOptionTemplate(1, BuildJumpToGuildMember, IsGuildJumpable)
     CHAT_MENU_GAMEPAD:AddOptionTemplate(1, BuildJumpToGroupMember, IsGroupJumpable)
-    
+
     return false
 end
 

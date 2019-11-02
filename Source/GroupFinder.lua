@@ -1,6 +1,6 @@
 local CT = ControllerTweaks
 
-local GroupFinder = {}
+local GroupFinder = CT_Plugin:Subclass()
 
 local function FindPledgeQuestForDungeon(dungeonLocation)
     for i = 1, MAX_JOURNAL_QUESTS do

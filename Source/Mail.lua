@@ -1,6 +1,6 @@
 local CT = ControllerTweaks
 
-local Mail = {}
+local Mail = CT_Plugin:Subclass()
 
 local _destroyAllIndex = nil
 

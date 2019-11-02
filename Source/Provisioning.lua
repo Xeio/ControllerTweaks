@@ -1,6 +1,6 @@
 local CT = ControllerTweaks
 
-local Provisioning = {}
+local Provisioning = CT_Plugin:Subclass()
 
 local showLowLevelOptionKey = nil
 local showLowLevel = false
@@ -19,8 +19,8 @@ local function HideRecipies(recipeList)
             if hasScaling and maxLevel < 160 then
                 local template = recipeList.templateList[i]
                 local recipeData = recipeList.dataList[i]
-                if template == "ZO_GamepadItemSubEntryTemplateWithHeader" and 
-                        i + 1 <= recipeList:GetNumEntries() and 
+                if template == "ZO_GamepadItemSubEntryTemplateWithHeader" and
+                        i + 1 <= recipeList:GetNumEntries() and
                         not recipeList.dataList[i + 1].header then
                     recipeList.dataList[i + 1].header = recipeData.header
                     recipeList.templateList[i + 1] = template

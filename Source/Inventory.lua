@@ -1,10 +1,47 @@
 local CT = ControllerTweaks
 
-local Inventory = {}
+local Inventory = CT_Plugin:Subclass()
 
+local NONE = GetString(SI_ITEMTYPE0)
+local LEFT_STICK = GetString(SI_KEYCODE129)
+local RIGHT_STICK = GetString(SI_KEYCODE130)
+local QUATERNARY = GetString(SI_BINDING_NAME_UI_SHORTCUT_QUATERNARY)
 local JUNK_ICON = "EsoUI/Art/Inventory/inventory_tabIcon_junk_up.dds"
 local RESEARCH_ICON = "EsoUI/Art/Inventory/Gamepad/gp_inventory_trait_not_researched_icon.dds"
 local BIND_NAME = GetString(SI_GAMEPAD_TOGGLE_OPTION) .. " " .. GetString(SI_ITEMFILTERTYPE9)
+
+local junkHotkeyOption = {
+    settingKey = "JunkHotkey",
+    type = "dropdown",
+    name = "Toggle Junk Hotkey",
+    tooltip = "Hotkey for toggle junk command.",
+    choices = {NONE, LEFT_STICK, RIGHT_STICK, QUATERNARY},
+    choicesValues = {"NONE", "UI_SHORTCUT_LEFT_STICK", "UI_SHORTCUT_RIGHT_STICK", "UI_SHORTCUT_QUATERNARY"},
+    width = "full",
+    default = "UI_SHORTCUT_RIGHT_STICK"
+}
+local stackAllHotkeyOption = {
+    settingKey = "StackAllHotkey",
+    type = "dropdown",
+    name = "Stack All Hotkey",
+    tooltip = "Hotkey for stack all.",
+    choices = {NONE, LEFT_STICK, RIGHT_STICK, QUATERNARY},
+    choicesValues = {"NONE", "UI_SHORTCUT_LEFT_STICK", "UI_SHORTCUT_RIGHT_STICK", "UI_SHORTCUT_QUATERNARY"},
+    width = "full",
+    default = "UI_SHORTCUT_LEFT_STICK"
+}
+local destroyHotkeyOption = {
+    settingKey = "DestroyHotkey",
+    type = "dropdown",
+    name = "Destroy Item Hotkey",
+    tooltip = "Hotkey for destroy item command.",
+    choices = {NONE, LEFT_STICK, RIGHT_STICK, QUATERNARY},
+    choicesValues = {"NONE", "UI_SHORTCUT_LEFT_STICK", "UI_SHORTCUT_RIGHT_STICK", "UI_SHORTCUT_QUATERNARY"},
+    width = "full",
+    default = "UI_SHORTCUT_QUATERNARY"
+}
+
+Inventory.options = {junkHotkeyOption, stackAllHotkeyOption, destroyHotkeyOption}
 
 local function ShowJunkIcons(control, data, selected, reselectingDuringRebuild, enabled, active)
     local statusIndicator = control.statusIndicator
@@ -51,8 +88,8 @@ local function UpdateInventoryHotkeys(descriptor)
         end
     end
 
-    inventoryBinds[_destroyHotkeyIndex].keybind = CT.Settings.DestroyHotkey
-    inventoryBinds[_stackAllHotkeyIndex].keybind = CT.Settings.StackAllHotkey
+    inventoryBinds[_destroyHotkeyIndex].keybind = CT.Settings[destroyHotkeyOption.settingKey]
+    inventoryBinds[_stackAllHotkeyIndex].keybind = CT.Settings[stackAllHotkeyOption.settingKey]
 
     if CT.Settings.JunkHotkey == "None" then
         if _junkHotkeyIndex then
@@ -62,12 +99,12 @@ local function UpdateInventoryHotkeys(descriptor)
     else
         if _junkHotkeyIndex then
             --Already created entry, just make sure the hotkey is up to date
-            inventoryBinds[_junkHotkeyIndex].keybind = CT.Settings.JunkHotkey
+            inventoryBinds[_junkHotkeyIndex].keybind = CT.Settings[junkHotkeyOption.settingKey]
         else
             _junkHotkeyIndex = #inventoryBinds + 1
             inventoryBinds[_junkHotkeyIndex] = {
                 name = BIND_NAME,
-                keybind = CT.Settings.JunkHotkey,
+                keybind = CT.Settings[junkHotkeyOption.settingKey],
                 order = 1501,
                 disabledDuringSceneHiding = true,
 
@@ -85,7 +122,6 @@ local function UpdateInventoryHotkeys(descriptor)
             }
         end
     end
-
 
     return false
 end
@@ -107,7 +143,7 @@ local function AddItemActions()
     if IsItemJunk(bag, index) then
         GAMEPAD_INVENTORY.itemActions.slotActions:AddSlotAction(SI_ITEM_ACTION_UNMARK_AS_JUNK, function() SetItemIsJunk(bag, index, false) end, nil)
     end
-    
+
     if PersonalAssistant and PersonalAssistant.Junk then
         local itemLink = GetItemLink(bag, index)
         local itemId = GetItemLinkItemId(itemLink)
@@ -124,7 +160,7 @@ local function AddItemActions()
         local itemLink = GetItemLink(bag, index)
         GAMEPAD_INVENTORY.itemActions.slotActions:AddSlotAction(TTC_PRICE_PRICETOCHAT, function() TamrielTradeCentrePrice:PriceInfoToChat(itemLink, TamrielTradeCentreLangEnum.Default) end, nil)
     end
-    
+
     return false
 end
 
