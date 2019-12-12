@@ -37,7 +37,9 @@ local function UpdateMailHotkeys()
             end,
 
             callback = function()
-                ZO_Dialogs_ShowGamepadDialog("DELETE_MAIL", { callback = DeleteEmptyMail })
+                DeleteEmptyMail()
+                -- NOTE: Opening a gamepad dialog breaks other parts of the UI, can't do this
+                -- ZO_Dialogs_ShowGamepadDialog("DELETE_MAIL", { callback = DeleteEmptyMail })
             end
         }
     end
