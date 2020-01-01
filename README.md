@@ -17,7 +17,7 @@ Mail:
 * Hotkey to delete all mail with no attachments
 
 Loot Panel:
-* Adds verticle offset to the loot popup panel (configurable in options). No more loot displayed behind the chat window.
+* Adds vertical offset to the loot popup panel (configurable in options). No more loot displayed behind the chat window.
 
 Crafting:
 * Hides low level (below champion 160) recipes by default. Can be shown again using the Actions menu toggles.
