@@ -88,8 +88,12 @@ local function UpdateInventoryHotkeys(descriptor)
         end
     end
 
-    inventoryBinds[_destroyHotkeyIndex].keybind = CT.Settings[destroyHotkeyOption.settingKey]
-    inventoryBinds[_stackAllHotkeyIndex].keybind = CT.Settings[stackAllHotkeyOption.settingKey]
+    if _destroyHotkeyIndex then
+        inventoryBinds[_destroyHotkeyIndex].keybind = CT.Settings[destroyHotkeyOption.settingKey]
+    end
+    if _stackAllHotkeyIndex then
+        inventoryBinds[_stackAllHotkeyIndex].keybind = CT.Settings[stackAllHotkeyOption.settingKey]
+    end
 
     if CT.Settings.JunkHotkey == "None" then
         if _junkHotkeyIndex then
