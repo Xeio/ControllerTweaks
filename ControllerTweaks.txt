@@ -1,9 +1,9 @@
 ## Title: Controller Tweaks
 ## Description:  Tweaks to ESO's Controller UI - /controllertweaks for options
-## Version: 1.1
-## AddOnVersion: 2
+## Version: 1.2
+## AddOnVersion: 3
 ## Author: Xeio
-## APIVersion: 100030
+## APIVersion: 100031
 ## SavedVariables: ControllerTweaksSavedVariables
 ## DependsOn: LibAddonMenu-2.0
 ## OptionalDependsOn: PersonalAssistant TamrielTradeCentre
