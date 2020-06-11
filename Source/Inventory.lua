@@ -146,8 +146,8 @@ local function AddItemActions()
 
     if PersonalAssistant and PersonalAssistant.Junk then
         local itemLink = GetItemLink(bag, index)
-        local itemId = GetItemLinkItemId(itemLink)
-        local hasPARule = PersonalAssistant.HelperFunctions.isKeyInTable(PersonalAssistant.Junk.SavedVars.Custom.ItemIds, itemId)
+        local paItemId = PersonalAssistant.HelperFunctions.getPAItemLinkIdentifier(itemLink)
+        local hasPARule = PersonalAssistant.HelperFunctions.isKeyInTable(PersonalAssistant.Junk.SavedVars.Custom.PAItemIds, paItemId)
         if CanItemBeMarkedAsJunk(bag, index) and not hasPARule then
             GAMEPAD_INVENTORY.itemActions.slotActions:AddSlotAction(SI_PA_SUBMENU_PAJ_MARK_PERM_JUNK, function() PersonalAssistant.Junk.addItemToPermanentJunk(itemLink, bag, index) end, nil)
         end
