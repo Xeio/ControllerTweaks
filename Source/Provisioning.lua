@@ -2,11 +2,18 @@ local CT = ControllerTweaks
 
 local Provisioning = CT_Plugin:Subclass()
 
-local showLowLevelOptionKey = nil
-local showLowLevel = false
+local SHOW_LOW_LEVEL_SETTING_KEY = "SHOW_LOW_LEVEL_RECIPES"
+local settingAdded = false
+
+local showLowLevelFilter =
+{
+    filterName = "Show Low Level Recipes",
+    filterTooltip = "Shows Recipes under CP160",
+    checked = false,
+}
 
 local function HideRecipies(recipeList)
-    if showLowLevel then
+    if CT.Settings[SHOW_LOW_LEVEL_SETTING_KEY] then
         return false
     end
 
@@ -35,24 +42,36 @@ local function HideRecipies(recipeList)
     return false
 end
 
-local function BuildOptions()
-    if not showLowLevelOptionKey then
-        showLowLevelOptionKey = #GAMEPAD_PROVISIONER.optionDataList + 1
-        local newOptionData = ZO_GamepadEntryData:New("Show Low Level Recipes")
-        newOptionData:SetDataSource({ optionName = GetString(SI_PROVISIONER_HAVE_SKILLS) })
-        newOptionData.currentValue = showLowLevel
-        GAMEPAD_PROVISIONER.optionDataList[showLowLevelOptionKey] = newOptionData
+local function AddCustomOptions(dialog, dialogData)
+    showLowLevelFilter.checked = CT.Settings[SHOW_LOW_LEVEL_SETTING_KEY]
+    if not settingAdded then
+        table.insert(dialogData.filters, showLowLevelFilter)
+        settingAdded = true
+    end
+end
+
+local function HookOptions()
+    if not GAMEPAD_PROVISIONER.craftingOptionsDialogGamepad then
+        GAMEPAD_PROVISIONER.craftingOptionsDialogGamepad = ZO_CraftingOptionsDialogGamepad:New()
+        ZO_PreHook(GAMEPAD_PROVISIONER.craftingOptionsDialogGamepad, "ShowOptionsDialog", AddCustomOptions)
     end
 end
 
 local function SaveOptions()
-    showLowLevel = GAMEPAD_PROVISIONER.optionDataList[showLowLevelOptionKey].currentValue
+    if CT.Settings[SHOW_LOW_LEVEL_SETTING_KEY] ~= showLowLevelFilter.checked then
+        CT.Settings[SHOW_LOW_LEVEL_SETTING_KEY] = showLowLevelFilter.checked
+        GAMEPAD_PROVISIONER:DirtyRecipeList()
+    end
 end
 
 function Provisioning:Init()
     ZO_PreHook(GAMEPAD_PROVISIONER.recipeList, "Commit", HideRecipies)
-    ZO_PreHook(GAMEPAD_PROVISIONER, "RefreshOptionList", BuildOptions)
     ZO_PostHook(GAMEPAD_PROVISIONER, "SaveFilters", SaveOptions)
+    ZO_PreHook(GAMEPAD_PROVISIONER, "ShowOptionsMenu", HookOptions)
+end
+
+function Provisioning:AddSettingsAndOptions(optionsPanel)
+    CT.Settings[SHOW_LOW_LEVEL_SETTING_KEY] = false
 end
 
 CT.Provisioning = Provisioning
