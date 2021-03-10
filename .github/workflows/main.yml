@@ -11,7 +11,7 @@ jobs:
         path: 'ControllerTweaks'
     
     - name: Zip release
-      run: 7z a esoui_release.zip * -x!*.git* -x!*.vscode*
+      run: 7z a esoui_release.zip * -xr!*.git* -xr!*.vscode*
     
     - name: Attach zip to release
       uses: Shopify/upload-to-release@v1.0.1
