@@ -1,0 +1,22 @@
+name: Build Zip File
+on: 
+  release:
+    types: [published, created, prereleased]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    
+    - name: Archive Release
+      uses: thedoctor0/zip-release@0.4.1
+      with:
+        filename: 'esoui_release.zip'
+        exclusions: '*.git* /*node_modules/* .editorconfig .vscode'
+    
+    - name: Archive Release
+      uses: Shopify/upload-to-release@v1
+      with:
+        name: esou_zip
+        path: esoui_release.zip
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
