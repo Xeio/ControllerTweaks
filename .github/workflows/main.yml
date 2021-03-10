@@ -7,16 +7,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+      with:
+        path: 'ControllerTweaks'
     
     - name: Archive Release
       uses: thedoctor0/zip-release@0.4.1
       with:
         filename: 'esoui_release.zip'
-        exclusions: '*.git* /*node_modules/* .editorconfig .vscode'
+        exclusions: '*.*'
     
-    - name: Archive Release
+    - name: Attach zip to release
       uses: Shopify/upload-to-release@v1.0.1
       with:
-        name: esou_zip
+        name: esou_release.zip
         path: esoui_release.zip
         repo-token: ${{ secrets.GITHUB_TOKEN }}
