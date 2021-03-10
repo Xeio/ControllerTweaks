@@ -1,7 +1,7 @@
 name: Build Zip File
 on: 
   release:
-    types: [published, created, prereleased]
+    types: [published, prereleased]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,7 +15,7 @@ jobs:
         exclusions: '*.git* /*node_modules/* .editorconfig .vscode'
     
     - name: Archive Release
-      uses: Shopify/upload-to-release@v1
+      uses: Shopify/upload-to-release@v1.0.1
       with:
         name: esou_zip
         path: esoui_release.zip
