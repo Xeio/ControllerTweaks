@@ -21,7 +21,7 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: ESO UI Publish
-      uses: Xeio/esoui-deploy-action@master
+      uses: Xeio/esoui-deploy-action@main
       with:
         addon-file-path: .\ControllerTweaks\ControllerTweaks.txt
         upload-zip-path: esoui_release.zip
