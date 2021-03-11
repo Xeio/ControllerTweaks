@@ -3,7 +3,6 @@ local CT = ControllerTweaks
 local Provisioning = CT_Plugin:Subclass()
 
 local SHOW_LOW_LEVEL_SETTING_KEY = "SHOW_LOW_LEVEL_RECIPES"
-local settingAdded = false
 
 local showLowLevelFilter =
 {
@@ -44,10 +43,7 @@ end
 
 local function AddCustomOptions(dialog, dialogData)
     showLowLevelFilter.checked = CT.Settings[SHOW_LOW_LEVEL_SETTING_KEY]
-    if not settingAdded then
-        table.insert(dialogData.filters, showLowLevelFilter)
-        settingAdded = true
-    end
+    table.insert(dialogData.filters, showLowLevelFilter)
 end
 
 local function HookOptions()
