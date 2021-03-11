@@ -23,7 +23,7 @@ jobs:
     - name: ESO UI Publish
       uses: Xeio/esoui-deploy-action@main
       with:
-        addon-file-path: .\ControllerTweaks\ControllerTweaks.txt
+        addon-file-path: ./ControllerTweaks/ControllerTweaks.txt
         upload-zip-path: esoui_release.zip
         addon-id: 2517
         eso-ui-api-key: ${{secrets.ESOUI_API_TOKEN}}
