@@ -5,7 +5,7 @@ local function Init(event, name)
 
     EVENT_MANAGER:UnregisterForEvent(CT.AddonName, EVENT_ADD_ON_LOADED)
 
-    local plugins = {CT.Inventory, CT.Chat, CT.Tooltips, CT.Mail, CT.GroupFinder, CT.Provisioning, CT.Loot}
+    local plugins = {CT.Inventory, CT.Chat, CT.Tooltips, CT.GroupFinder, CT.Provisioning, CT.Loot}
     for i, plugin in ipairs(plugins) do
         plugin:AddSettingsAndOptions(CT.OptionsPanel)
     end
